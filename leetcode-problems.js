@@ -35,3 +35,23 @@ var longestConsecutive = function(nums) {
         return longest;  
 };
 console.log(longestConsecutive([100,4,200,1,3,2])); // 4
+
+// 03. Longest Substring Without Repeating Characters
+
+var lengthOfLongestSubstring = function(s) {
+    let set = new Set();
+    let left =0;
+    let maxlength =0;
+    
+    for(let right=0;right<s.length;right++){
+        while(set.has(s[right])){
+            set.delete(s[left]);
+            left++;
+        }
+        set.add(s[right]);
+        maxlength = Math.max(maxlength,right-left+1);
+    }
+    return maxlength;
+
+};
+console.log(lengthOfLongestSubstring("abcabcbb")); // 3
