@@ -55,3 +55,10 @@ var lengthOfLongestSubstring = function(s) {
 
 };
 console.log(lengthOfLongestSubstring("abcabcbb")); // 3
+
+// 04.Reverse Words in a String
+
+var reverseWords = function(s) {
+    return s.trim().split(/\s+/).reverse().join(" ");
+};
+console.log(reverseWords("  hello world!  ")); // "world! hello"
