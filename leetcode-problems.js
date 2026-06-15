@@ -92,3 +92,28 @@ var maxSubArray = function(nums) {
     return maxSum;
 };
 console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4])); // 6
+
+// 07.Kth Largest Element in an Array
+
+var findKthLargest = function(nums, k) {
+    let max = Math.max(...nums);
+    let min = Math.min(...nums);
+
+    let buckets = new Array(max - min + 1).fill(0);
+
+    for (const num of nums) {
+        buckets[num - min]++;
+    }
+
+    let remaining = k
+
+    for (let i = buckets.length - 1; i >= 0; i--) {
+        remaining -= buckets[i];
+
+        if (remaining <= 0) {
+            return i + min;
+        }
+    }
+};
+console.log(findKthLargest([3,2,1,5,6,4], 2)); // 5
+console.log(findKthLargest([3,2,3,1,2,4,5,5,6], 4)); // 4
