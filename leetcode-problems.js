@@ -117,3 +117,20 @@ var findKthLargest = function(nums, k) {
 };
 console.log(findKthLargest([3,2,1,5,6,4], 2)); // 5
 console.log(findKthLargest([3,2,3,1,2,4,5,5,6], 4)); // 4
+
+இந்த problem-ல நாம “kth largest element” கண்டுபிடிக்கணும். 
+Normal-ஆ sort பண்ணாம, fast-ஆ solve பண்ண counting method use பண்ணிருக்கோம். 
+முதலில் array-ல இருக்குற எல்லா numbers-க்கும் minimum value என்ன, maximum value என்னன்னு கண்டுபிடிக்கிறோம். 
+இதனால நமக்கு total range தெரியும். அடுத்து அந்த range அளவுக்கு ஒரு புதிய array (dp) create பண்ணுறோம். 
+இந்த dp array ஒரு frequency box மாதிரி. அதாவது ஒவ்வொரு number எத்தனை முறை வந்திருக்குன்னு store பண்ணும். 
+அதுக்காக nums array-ல உள்ள ஒவ்வொரு number-யும் loop பண்ணி, அந்த number-க்கு corresponding index-ல (num - min) position-ல +1 increment பண்ணுறோம். 
+இப்ப dp array-ல எல்லா numbers-க்கும் count ready ஆயிடும்.
+
+அடுத்து முக்கிய logic start ஆகுது. 
+நாம பெரிய number-ல இருந்து small number நோக்கி traverse பண்ணுறோம். 
+அதாவது dp array-யை reverse direction-ல loop பண்ணி போறோம். 
+ஏன்னா நமக்கு kth largest வேண்டியது, அதனால பெரிய values first consider பண்ணணும். 
+ஒவ்வொரு index-ல இருக்கும் frequency value-யை k-ல இருந்து கழிக்கிறோம். 
+அதாவது அந்த number எத்தனை times வந்திருக்கோ, அவ்வளவு k reduce ஆகும். 
+இப்படியே போகும்போது k value 0 அல்லது negative ஆகிடும் moment தான் நமக்கு answer கிடைச்சுடுச்சு என்று அர்த்தம். 
+அந்த time-ல அந்த index-க்கு min சேர்த்து original number-ஐ return பண்ணுறோம். இதுதான் kth largest element.
